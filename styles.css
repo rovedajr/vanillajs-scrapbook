@@ -1,0 +1,18 @@
+textarea {
+  resize: none;
+}
+
+#scrapsField {
+  min-width: 90vw;
+}
+
+.message-cards {
+  max-height: 200px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  scrollbar-color: silver rgb(52, 58, 64);
+  scrollbar-width: thin;
+  border-radius: 4px;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Scrapbook</title>
+</head> 
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Scrapbook</a>
+      </nav>
+      <main role="main">
+        <div class="jumbotron">
+            <div class="container d-flex flex-column align-items-center">
+                <h3 class="font-weight-bold m-5">Mural de recados – deixe sua mensagem.</h3>
+
+                <div id="inputField" class="col-md-6 form-group">
+                    <label for="messageTitle" class="font-weight-bold">Título:</label>
+                    <input type="text" class="form-control mb-3" id="messageTitle" placeholder="Digite o título da mensagem">
+                    <label for="messageBody" class="font-weight-bold">Mensagem:</label>
+                    <textarea class="form-control" id="messageBody" cols="30" rows="5"></textarea>
+                    <button type="button" class="btn btn-dark mt-3">Adicionar</button>
+                </div>
+
+                <!-- Aqui -->
+
+                <div id="scrapsField" class="d-flex flex-wrap mt-5 justify-content-center">
+
+                    <!-- <div class="card text-white bg-dark m-2" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>header</h5>
+                        </div>
+                        <div class="card-body">
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                      </div> -->
+
+                </div>
+
+            </div>
+
+            </div>
+
+        </div>
+
+      </main>
+
+
+      <script src="scrapbookEngine.js"></script>
+    </body>
+</html>

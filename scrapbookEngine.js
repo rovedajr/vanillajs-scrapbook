@@ -2,20 +2,9 @@ let field = document.querySelector('#scrapsField')
 let messageTitle = document.querySelector('#messageTitle')
 let messageBody = document.querySelector('#messageBody')
 let button = document.getElementsByTagName("button")[0]
-let tasks =
-    // JSON.parse(localStorage.getItem('task_list')) || 
-    []
-
-// let closer = document.querySelector('#closer')
-// console.log(closer);
-
-function deleteTask(position) {
-    tasks.splice(position, 1)
-
-    renderTasks()
-    saveInStorage()
-}
-
+let tasks = JSON.parse(localStorage.getItem('task_list')) || [
+    // { titulo: 'Test', mensagem: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum consequatur voluptas deleniti.' }
+]
 
 
 
@@ -39,19 +28,9 @@ function renderCard() {
         let card = document.createElement('div')
         card.classList.add('card', 'bg-dark', 'col-md-3', 'text-white', 'message-cards', 'm-2')
 
-        // let bucetinha = document.createElement('button')
-
-
         let headerBox = document.createElement('div')
-        headerBox.classList.add('card-header', 'position-relative')
-
-        headerBox.innerHTML = `<button type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>${task.titulo}`
-
-
-
-
+        headerBox.classList.add('card-header')
+        headerBox.innerText = task.titulo
 
         let messageBody = document.createElement('div')
         messageBody.classList.add('card-body', 'scroll')
@@ -63,9 +42,6 @@ function renderCard() {
         card.appendChild(headerBox)
         card.appendChild(messageBody)
         field.appendChild(card)
-
-        let position = tasks.indexOf(task)
-        // closer.setAttribute('onclick', `deleteTask(${position})`)
     }
 }
 

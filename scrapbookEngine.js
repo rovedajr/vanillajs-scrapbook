@@ -53,6 +53,9 @@ function renderCard() {
         deleteButton.setAttribute('data-dismis', 'modal')
         deleteButton.innerHTML = '<span aria-hidden="true">×</span>'
         headerBox.appendChild(deleteButton)
+
+        let position = tasks.indexOf(task)
+        deleteButton.setAttribute('onclick', `deleteTask(${position})`)
     }
 }
 
@@ -60,6 +63,12 @@ renderCard()
 
 function storeLocally() {
     localStorage.setItem('task_list', JSON.stringify(tasks))
+}
+
+function deleteTask(position) {
+    tasks.splice(position, 1)
+    renderCard()
+    storeLocally()
 }
 
 

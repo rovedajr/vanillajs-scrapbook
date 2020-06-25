@@ -3,9 +3,9 @@ let messageTitle = document.querySelector('#messageTitle')
 let messageBody = document.querySelector('#messageBody')
 let button = document.getElementsByTagName("button")[0]
 let tasks =
-    // JSON.parse(localStorage.getItem('task_list')) ||
+    JSON.parse(localStorage.getItem('task_list')) ||
     [
-        { titulo: 'Test alskdj wehewrltkjehrt ertk wkejrhw rkjh rektj', mensagem: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum consequatur voluptas deleniti.' }
+        // { titulo: 'Test alskdj wehewrltkjehrt ertk wkejrhw rkjh rektj', mensagem: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum consequatur voluptas deleniti.' }
     ]
 
 
@@ -48,11 +48,11 @@ function renderCard() {
         card.appendChild(messageBody)
         field.appendChild(card)
 
-        let butao = document.createElement('button')
-        butao.classList.add('close')
-        butao.setAttribute('data-dismis', 'modal')
-        butao.innerHTML = '<span aria-hidden="true">×</span>'
-        headerBox.appendChild(butao)
+        let deleteButton = document.createElement('button')
+        deleteButton.classList.add('close')
+        deleteButton.setAttribute('data-dismis', 'modal')
+        deleteButton.innerHTML = '<span aria-hidden="true">×</span>'
+        headerBox.appendChild(deleteButton)
     }
 }
 

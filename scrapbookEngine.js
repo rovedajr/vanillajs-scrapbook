@@ -3,13 +3,17 @@ let messageTitle = document.querySelector('#messageTitle')
 let messageBody = document.querySelector('#messageBody')
 let button = document.getElementsByTagName("button")[0]
 let tasks =
-    JSON.parse(localStorage.getItem('task_list')) || []
+    // JSON.parse(localStorage.getItem('task_list')) || 
+    []
+
+// let closer = document.querySelector('#closer')
+// console.log(closer);
 
 function deleteTask(position) {
     tasks.splice(position, 1)
 
-    renderCard()
-    storeLocally()
+    renderTasks()
+    saveInStorage()
 }
 
 
@@ -35,16 +39,17 @@ function renderCard() {
         let card = document.createElement('div')
         card.classList.add('card', 'bg-dark', 'col-md-3', 'text-white', 'message-cards', 'm-2')
 
+        // let bucetinha = document.createElement('button')
+
+
         let headerBox = document.createElement('div')
-        headerBox.classList.add('card-header')
-        headerBox.innerText = task.titulo
+        headerBox.classList.add('card-header', 'position-relative')
 
-        let closer = document.createElement('button')
-        closer.innerHTML = `<button type="button" class="close text-white" id="closer" aria-label="Close">
-        <span aria-hidden="true">&times;</span>`
+        headerBox.innerHTML = `<button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>${task.titulo}`
 
-        closer.classList.add('close', 'text-white')
-        headerBox.appendChild(closer)
+
 
 
 
@@ -60,7 +65,7 @@ function renderCard() {
         field.appendChild(card)
 
         let position = tasks.indexOf(task)
-        closer.setAttribute('onclick', `deleteTask(${position})`)
+        // closer.setAttribute('onclick', `deleteTask(${position})`)
     }
 }
 

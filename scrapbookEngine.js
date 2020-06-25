@@ -3,12 +3,7 @@ let messageTitle = document.querySelector('#messageTitle')
 let messageBody = document.querySelector('#messageBody')
 let button = document.getElementsByTagName("button")[0]
 let tasks =
-    JSON.parse(localStorage.getItem('task_list')) ||
-    [
-        // { titulo: 'Test alskdj wehewrltkjehrt ertk wkejrhw rkjh rektj', mensagem: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum consequatur voluptas deleniti.' }
-    ]
-
-
+    JSON.parse(localStorage.getItem('task_list')) || []
 
 function fillTasks() {
     if (!messageTitle.value || !messageBody.value) {
@@ -70,7 +65,5 @@ function deleteTask(position) {
     renderCard()
     storeLocally()
 }
-
-
 
 button.onclick = fillTasks

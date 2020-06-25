@@ -2,9 +2,11 @@ let field = document.querySelector('#scrapsField')
 let messageTitle = document.querySelector('#messageTitle')
 let messageBody = document.querySelector('#messageBody')
 let button = document.getElementsByTagName("button")[0]
-let tasks = JSON.parse(localStorage.getItem('task_list')) || [
-    // { titulo: 'Test', mensagem: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum consequatur voluptas deleniti.' }
-]
+let tasks = JSON.parse(localStorage.getItem('task_list')) || []
+
+let closer = document.querySelector('.closer')
+console.log(closer);
+
 
 
 

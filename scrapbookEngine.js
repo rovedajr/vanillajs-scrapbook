@@ -3,7 +3,8 @@ let messageTitle = document.querySelector('#messageTitle')
 let messageBody = document.querySelector('#messageBody')
 let button = document.getElementsByTagName("button")[0]
 let tasks =
-    JSON.parse(localStorage.getItem('task_list')) || []
+    // JSON.parse(localStorage.getItem('task_list')) ||
+    [{ "titulo": "oiuoiu", "mensagem": "oiuoi" }]
 
 function fillTasks() {
     if (!messageTitle.value || !messageBody.value) {

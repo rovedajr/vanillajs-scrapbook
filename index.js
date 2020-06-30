@@ -40,7 +40,7 @@ function createScrapCard(title, message) {
   </div>
   <div class="w100 d-flex justify-content-end pr-2 pb-2">
       <button class="btn btn-danger mr-1">deletar</button>
-      <button class="btn btn-info">editar</button>
+      <button class="btn btn-info" data-toggle="modal" data-target="#editModal">editar</button>
   </div>
 </div>
   `;

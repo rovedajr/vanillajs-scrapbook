@@ -1,3 +1,25 @@
+
+body {
+  background: no-repeat url(img/wave.svg);
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+}
+
+#hex {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  right: 0;
+  z-index: -3;
+}
+
+.jumbotron {
+  background-color: rgba(0,0,0,0);
+  margin-bottom: 0;
+  position: relative;
+}
+
 textarea {
   resize: none;
 }
@@ -7,16 +29,11 @@ textarea {
   width: 250px;
 }
 
-/* #scrapsField .message-cards .card-body {
 
-  padding-bottom: 0;
-} */
 
 #scrapsField .message-cards .card-text{
   height: 100px;
   overflow-y: scroll;
-
-
 }
 
 ::-webkit-scrollbar {

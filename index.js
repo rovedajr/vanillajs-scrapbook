@@ -86,4 +86,5 @@ function storeLocally() {
 function deleteTask(position) {
   scraps.splice(position, 1)
   renderScraps()
+  storeLocally()
 }

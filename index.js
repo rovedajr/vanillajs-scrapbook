@@ -9,7 +9,7 @@ let btnSaveEdit = document.getElementById("saveEdit")
 
 
 let scraps = JSON.parse(localStorage.getItem('task_list')) ||
-  [{ "titulo": "oiuoiu", "mensagem": "oiuoi" }]
+  []
 
 renderScraps()
 

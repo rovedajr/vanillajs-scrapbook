@@ -9,7 +9,7 @@ let btnSaveEdit = document.getElementById("saveEdit")
 
 
 let scraps = JSON.parse(localStorage.getItem('task_list')) ||
-  [{ "titulo": "oiuoiu", "mensagem": "oiuoi" }]
+  []
 
 renderScraps()
 
@@ -86,4 +86,5 @@ function storeLocally() {
 function deleteTask(position) {
   scraps.splice(position, 1)
   renderScraps()
+  storeLocally()
 }

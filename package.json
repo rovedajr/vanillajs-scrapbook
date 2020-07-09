@@ -1,0 +1,8 @@
+{
+  "name": "scrapbook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rovedajr/vanillajs-scrapbook.git",
+  "author": "rovedajr <contato@rovedajr.com>",
+  "license": "MIT"
+}

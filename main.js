@@ -1,45 +1,75 @@
 class TaskList {
-    constructor() {
-        this.titleInput = document.getElementById("messageTitle");
-        this.messageInput = document.getElementById("messageBody");
-        this.addButton = document.getElementById("addButton");
-        this.scrapsField = document.getElementById("scrapsField");
+  constructor() {
+    this.titleInput = document.getElementById("messageTitle");
+    this.messageInput = document.getElementById("messageBody");
+    this.addButton = document.getElementById("addButton");
+    this.scrapsField = document.getElementById("scrapsField");
 
-        this.scraps = []
+    this.scraps = [];
 
-        renderScraps()
-        this.scrapsField.innerHTML = ""
-        for (const scrap of this.scraps) {
-            this.scrapsField.innerHTML += createScrapCard(scrap.title, scrap.message)
-        }
+    this.setAddButtonEvent();
+  }
 
-    }
+  setAddButtonEvent() {
+    this.addButton.onclick = () => this.addNewScrap();
+  }
 
-    addNewScrap() {
-        let title = this.titleInput.value
-        let message = this.this.messageInput.value
+  setButtonEvents() {
+    document.querySelectorAll('.delete-button').forEach((item) => {
+      item.onclick = (event) => this.deleteScrap(event)
+    })
+  }
 
-        this.titleInput.value = ""
-        this.messageInput.value = ""
+  renderScraps() {
+    this.scrapsField.innerHTML = "";
 
-        this.scraps.push({ title, message })
-    }
+    for (const scrap of this.scraps) {
+      this.scrapsField.innerHTML += this.createScrapCard(
+        scrap.title,
+        scrap.message
+      );
+    } this.setButtonEvents()
+  }
 
-    createScrapCard() {
-        return `<div class="message-cards card text-white bg-dark m-2">
+  // this.setButtonEvents()
+
+  addNewScrap() {
+    let title = this.titleInput.value;
+    let message = this.messageInput.value;
+
+    this.titleInput.value = "";
+    this.messageInput.value = "";
+
+    this.scraps.push({ title, message });
+
+    this.renderScraps();
+  }
+
+  deleteScrap(event) {
+    // this.scraps.splice(position, 1);
+    // this.renderScraps();
+    console.log(event)
+  }
+
+
+
+
+  createScrapCard(title, message) {
+    return `
+      <div class="message-cards card text-white bg-dark m-2 col-3">
         <div class="card-header font-weight-bold">${title}</div>
         <div class="card-body">
           <p class="card-text">
             ${message}
           </p>
         </div>
-        <div class="w100 d-flex justify-content-end pr-2 pb-2">
-            <button class="btn btn-danger mr-1">deletar</button>
-            <button class="btn btn-info">editar</button>
+        <div class="w-100 d-flex justify-content-end pr-2 pb-2">
+          <button class="btn btn-danger mr-1 delete-button">Deletar</button>
+          <button class="btn btn-info">Editar</button>
         </div>
       </div>
-        `
-    }
+    `;
+  }
 }
 
-new TaskList()
+new TaskList();

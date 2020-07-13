@@ -21,40 +21,75 @@ var TaskList = /*#__PURE__*/function () {
     this.addButton = document.getElementById("addButton");
     this.scrapsField = document.getElementById("scrapsField");
     this.scraps = [];
-    renderScraps();
-    this.scrapsField.innerHTML = "";
-
-    var _iterator = _createForOfIteratorHelper(this.scraps),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var scrap = _step.value;
-        this.scrapsField.innerHTML += createScrapCard(scrap.title, scrap.message);
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
+    this.setAddButtonEvent();
   }
 
   _createClass(TaskList, [{
+    key: "setAddButtonEvent",
+    value: function setAddButtonEvent() {
+      var _this = this;
+
+      this.addButton.onclick = function () {
+        return _this.addNewScrap();
+      };
+    }
+  }, {
+    key: "setButtonEvents",
+    value: function setButtonEvents() {
+      var _this2 = this;
+
+      document.querySelectorAll('.delete-button').forEach(function (item) {
+        item.onclick = function (event) {
+          return _this2.deleteScrap(event);
+        };
+      });
+    }
+  }, {
+    key: "renderScraps",
+    value: function renderScraps() {
+      this.scrapsField.innerHTML = "";
+
+      var _iterator = _createForOfIteratorHelper(this.scraps),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var scrap = _step.value;
+          this.scrapsField.innerHTML += this.createScrapCard(scrap.title, scrap.message);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      this.setButtonEvents();
+    } // this.setButtonEvents()
+
+  }, {
     key: "addNewScrap",
     value: function addNewScrap() {
       var title = this.titleInput.value;
-      var message = this["this"].messageInput.value;
+      var message = this.messageInput.value;
       this.titleInput.value = "";
       this.messageInput.value = "";
       this.scraps.push({
         title: title,
         message: message
       });
+      this.renderScraps();
+    }
+  }, {
+    key: "deleteScrap",
+    value: function deleteScrap(event) {
+      // this.scraps.splice(position, 1);
+      // this.renderScraps();
+      console.log(event);
     }
   }, {
     key: "createScrapCard",
-    value: function createScrapCard() {
-      return "<div class=\"message-cards card text-white bg-dark m-2\">\n        <div class=\"card-header font-weight-bold\">".concat(title, "</div>\n        <div class=\"card-body\">\n          <p class=\"card-text\">\n            ").concat(message, "\n          </p>\n        </div>\n        <div class=\"w100 d-flex justify-content-end pr-2 pb-2\">\n            <button class=\"btn btn-danger mr-1\">deletar</button>\n            <button class=\"btn btn-info\">editar</button>\n        </div>\n      </div>\n        ");
+    value: function createScrapCard(title, message) {
+      return "\n      <div class=\"message-cards card text-white bg-dark m-2 col-3\">\n        <div class=\"card-header font-weight-bold\">".concat(title, "</div>\n        <div class=\"card-body\">\n          <p class=\"card-text\">\n            ").concat(message, "\n          </p>\n        </div>\n        <div class=\"w-100 d-flex justify-content-end pr-2 pb-2\">\n          <button class=\"btn btn-danger mr-1 delete-button\">Deletar</button>\n          <button class=\"btn btn-info\">Editar</button>\n        </div>\n      </div>\n    ");
     }
   }]);
 

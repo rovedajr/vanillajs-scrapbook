@@ -73,6 +73,7 @@ function saveChanges(position) {
   scraps[position].message = editMessageInput.value
   renderScraps()
   storeLocally()
+  $('#editModal').modal('hide')
 
 }
 
@@ -86,5 +87,7 @@ function storeLocally() {
 function deleteTask(position) {
   scraps.splice(position, 1)
   renderScraps()
+
+
   storeLocally()
 }

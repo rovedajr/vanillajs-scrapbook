@@ -25,6 +25,11 @@ var TaskList = /*#__PURE__*/function () {
   }
 
   _createClass(TaskList, [{
+    key: "generateScrapId",
+    value: function generateScrapId() {
+      return this.scraps.length + 1;
+    }
+  }, {
     key: "setAddButtonEvent",
     value: function setAddButtonEvent() {
       var _this = this;
@@ -40,7 +45,7 @@ var TaskList = /*#__PURE__*/function () {
 
       document.querySelectorAll('.delete-button').forEach(function (item) {
         item.onclick = function (event) {
-          return _this2.deleteScrap(event);
+          return _this2.deleteScraps(event);
         };
       });
     }
@@ -55,7 +60,8 @@ var TaskList = /*#__PURE__*/function () {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var scrap = _step.value;
-          this.scrapsField.innerHTML += this.createScrapCard(scrap.title, scrap.message);
+          var cardHtml = this.createScrapCard(scrap.id, scrap.title, scrap.message);
+          this.insertHtml(cardHtml);
         }
       } catch (err) {
         _iterator.e(err);
@@ -73,23 +79,34 @@ var TaskList = /*#__PURE__*/function () {
       var message = this.messageInput.value;
       this.titleInput.value = "";
       this.messageInput.value = "";
+      var id = this.generateScrapId();
       this.scraps.push({
+        id: id,
         title: title,
         message: message
       });
       this.renderScraps();
     }
   }, {
-    key: "deleteScrap",
-    value: function deleteScrap(event) {
-      // this.scraps.splice(position, 1);
-      // this.renderScraps();
-      console.log(event);
+    key: "deleteScraps",
+    value: function deleteScraps(event) {
+      console.log(event.target.nodeName);
+      event.path[2].remove();
+      var scrapId = event.path[2].getAttribute('id-scrap');
+      var scrapIndex = this.scraps.findIndex(function (scrap) {
+        return scrap.id == scrapId;
+      });
+      this.scraps.splice(scrapIndex, 1);
+    }
+  }, {
+    key: "insertHtml",
+    value: function insertHtml(html) {
+      this.scrapsField.innerHTML += html; // console.log(html);
     }
   }, {
     key: "createScrapCard",
-    value: function createScrapCard(title, message) {
-      return "\n      <div class=\"message-cards card text-white bg-dark m-2 col-3\">\n        <div class=\"card-header font-weight-bold\">".concat(title, "</div>\n        <div class=\"card-body\">\n          <p class=\"card-text\">\n            ").concat(message, "\n          </p>\n        </div>\n        <div class=\"w-100 d-flex justify-content-end pr-2 pb-2\">\n          <button class=\"btn btn-danger mr-1 delete-button\">Deletar</button>\n          <button class=\"btn btn-info\">Editar</button>\n        </div>\n      </div>\n    ");
+    value: function createScrapCard(id, title, message) {
+      return "\n      <div class=\"message-cards card text-white bg-dark m-2 col-3\" id-scrap=\"".concat(id, "\">\n        <div class=\"card-header font-weight-bold\">").concat(title, "</div>\n        <div class=\"card-body\">\n          <p class=\"card-text\">\n            ").concat(message, "\n          </p>\n        </div>\n        <div class=\"w-100 d-flex justify-content-end pr-2 pb-2\">\n          <button class=\"btn btn-danger mr-1 delete-button\">Deletar</button>\n          <button class=\"btn btn-info\">Editar</button>\n        </div>\n      </div>\n    ");
     }
   }]);
 

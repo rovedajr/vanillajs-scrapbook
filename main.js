@@ -10,13 +10,17 @@ class TaskList {
     this.setAddButtonEvent();
   }
 
+  generateScrapId() {
+    return this.scraps.length + 1
+  }
+
   setAddButtonEvent() {
     this.addButton.onclick = () => this.addNewScrap();
   }
 
   setButtonEvents() {
     document.querySelectorAll('.delete-button').forEach((item) => {
-      item.onclick = (event) => this.deleteScrap(event)
+      item.onclick = (event) => this.deleteScraps(event)
     })
   }
 
@@ -24,11 +28,10 @@ class TaskList {
     this.scrapsField.innerHTML = "";
 
     for (const scrap of this.scraps) {
-      this.scrapsField.innerHTML += this.createScrapCard(
-        scrap.title,
-        scrap.message
-      );
-    } this.setButtonEvents()
+      const cardHtml = this.createScrapCard(scrap.id, scrap.title, scrap.message);
+      this.insertHtml(cardHtml)
+    }
+    this.setButtonEvents()
   }
 
   // this.setButtonEvents()
@@ -40,23 +43,34 @@ class TaskList {
     this.titleInput.value = "";
     this.messageInput.value = "";
 
-    this.scraps.push({ title, message });
+    const id = this.generateScrapId()
+
+    this.scraps.push({ id, title, message });
 
     this.renderScraps();
   }
 
-  deleteScrap(event) {
-    // this.scraps.splice(position, 1);
-    // this.renderScraps();
-    console.log(event)
+  deleteScraps(event) {
+    console.log(event.target.nodeName);
+    event.path[2].remove()
+
+    const scrapId = event.path[2].getAttribute('id-scrap')
+    const scrapIndex = this.scraps.findIndex((scrap) => {
+      return scrap.id == scrapId
+    })
+    this.scraps.splice(scrapIndex, 1)
+
+  }
+
+  insertHtml(html) {
+    this.scrapsField.innerHTML += html
+    // console.log(html);
   }
 
 
-
-
-  createScrapCard(title, message) {
+  createScrapCard(id, title, message) {
     return `
-      <div class="message-cards card text-white bg-dark m-2 col-3">
+      <div class="message-cards card text-white bg-dark m-2 col-3" id-scrap="${id}">
         <div class="card-header font-weight-bold">${title}</div>
         <div class="card-body">
           <p class="card-text">

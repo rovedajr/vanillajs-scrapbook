@@ -60,8 +60,7 @@ var TaskList = /*#__PURE__*/function () {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var scrap = _step.value;
-          var cardHtml = this.createScrapCard(scrap.id, scrap.title, scrap.message);
-          this.insertHtml(cardHtml);
+          this.generateScrap(scrap.id, scrap.title, scrap.message);
         }
       } catch (err) {
         _iterator.e(err);
@@ -70,8 +69,14 @@ var TaskList = /*#__PURE__*/function () {
       }
 
       this.setButtonEvents();
-    } // this.setButtonEvents()
-
+    }
+  }, {
+    key: "generateScrap",
+    value: function generateScrap(id, title, message) {
+      var cardHtml = this.createScrapCard(id, title, message);
+      this.insertHtml(cardHtml);
+      this.setButtonEvents();
+    }
   }, {
     key: "addNewScrap",
     value: function addNewScrap() {

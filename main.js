@@ -5,6 +5,10 @@ class TaskList {
     this.addButton = document.getElementById("addButton");
     this.scrapsField = document.getElementById("scrapsField");
 
+    this.editTitleInput = document.getElementById("editMessageTitle")
+    this.editMessageInput = document.getElementById("editMessageBody")
+    this.btnSaveEdit = document.getElementById('saveEdit')
+
     this.scraps = [];
 
     this.setAddButtonEvent();
@@ -19,10 +23,18 @@ class TaskList {
   }
 
   setButtonEvents() {
+
     document.querySelectorAll('.delete-button').forEach((item) => {
       item.onclick = (event) => this.deleteScraps(event)
     })
+
+    document.querySelectorAll('.edit-button').forEach(item => {
+      item.onclick = event => this.editScraps(event)
+    })
+
+    this.btnSaveEdit.onclick = (event) => this.saveTask(event)
   }
+
 
   renderScraps() {
     this.scrapsField.innerHTML = "";
@@ -57,7 +69,7 @@ class TaskList {
   }
 
   deleteScraps(event) {
-    console.log(event.target.nodeName);
+    console.log(event);
     event.path[2].remove()
 
     const scrapId = event.path[2].getAttribute('id-scrap')
@@ -66,6 +78,25 @@ class TaskList {
     })
     this.scraps.splice(scrapIndex, 1)
 
+  }
+
+  editScraps(event) {
+    $('#editModal').modal('toggle')
+    const scrapId = event.path[2].getAttribute('id-scrap')
+    const scrapIndex = this.scraps.findIndex((scrap) => {
+      return scrap.id == scrapId
+    })
+    this.editTitleInput.value = this.scraps[scrapIndex].title
+    this.editMessageInput.value = this.scraps[scrapIndex].message
+
+
+
+    console.log(document.querySelectorAll('[data-action="fly"]'));
+  }
+
+  saveTask(event) {
+    alert(`title: ${this.editTitleInput.value}`)
+    $('#editModal').modal('toggle')
   }
 
   insertHtml(html) {
@@ -85,7 +116,7 @@ class TaskList {
         </div>
         <div class="w-100 d-flex justify-content-end pr-2 pb-2">
           <button class="btn btn-danger mr-1 delete-button">Deletar</button>
-          <button class="btn btn-info">Editar</button>
+          <button class="btn btn-info edit-button">Editar</button>
         </div>
       </div>
     `;

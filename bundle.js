@@ -125,7 +125,6 @@ var TaskList = /*#__PURE__*/function () {
       });
       this.editTitleInput.value = this.scraps[scrapIndex].title;
       this.editMessageInput.value = this.scraps[scrapIndex].message;
-      console.log(document.querySelectorAll('[data-action="fly"]'));
     }
   }, {
     key: "saveTask",

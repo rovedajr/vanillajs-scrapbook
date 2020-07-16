@@ -88,10 +88,6 @@ class TaskList {
     })
     this.editTitleInput.value = this.scraps[scrapIndex].title
     this.editMessageInput.value = this.scraps[scrapIndex].message
-
-
-
-    console.log(document.querySelectorAll('[data-action="fly"]'));
   }
 
   saveTask(event) {

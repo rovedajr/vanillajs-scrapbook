@@ -25,14 +25,12 @@ class TaskList {
   setButtonEvents() {
 
     document.querySelectorAll('.delete-button').forEach((item) => {
-      item.onclick = (event) => this.deleteScraps(event)
+      item.onclick = (event) => this.deleteScraps()
     })
 
     document.querySelectorAll('.edit-button').forEach(item => {
-      item.onclick = event => this.editScraps(event)
+      item.onclick = event => this.editModal(event)
     })
-
-    this.btnSaveEdit.onclick = (event) => this.saveTask(event)
   }
 
 
@@ -68,8 +66,7 @@ class TaskList {
     this.renderScraps();
   }
 
-  deleteScraps(event) {
-    console.log(event);
+  deleteScraps() {
     event.path[2].remove()
 
     const scrapId = event.path[2].getAttribute('id-scrap')
@@ -80,7 +77,7 @@ class TaskList {
 
   }
 
-  editScraps(event) {
+  editModal(event) {
     $('#editModal').modal('toggle')
     const scrapId = event.path[2].getAttribute('id-scrap')
     const scrapIndex = this.scraps.findIndex((scrap) => {
@@ -88,16 +85,37 @@ class TaskList {
     })
     this.editTitleInput.value = this.scraps[scrapIndex].title
     this.editMessageInput.value = this.scraps[scrapIndex].message
+
+
+    this.btnSaveEdit.onclick = (event) => this.saveChanges(scrapIndex)
   }
 
-  saveTask(event) {
-    alert(`title: ${this.editTitleInput.value}`)
-    $('#editModal').modal('toggle')
+
+  /* for reference only
+
+function saveChanges(position) {
+
+  scraps[position].title = editTitleInput.value
+  scraps[position].message = editMessageInput.value
+  renderScraps()
+  storeLocally()
+  $('#editModal').modal('hide')
+
+}
+
+  */
+
+  saveChanges(scrapIndex) {
+    let title = this.editTitleInput.value
+    let message = this.editMessageInput.value
+
+    this.scraps[scrapIndex] = { title, message }
+    this.renderScraps()
+    $('#editModal').modal('hide')
   }
 
   insertHtml(html) {
     this.scrapsField.innerHTML += html
-    // console.log(html);
   }
 
 

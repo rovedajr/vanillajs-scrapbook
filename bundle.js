@@ -48,18 +48,14 @@ var TaskList = /*#__PURE__*/function () {
 
       document.querySelectorAll('.delete-button').forEach(function (item) {
         item.onclick = function (event) {
-          return _this2.deleteScraps(event);
+          return _this2.deleteScraps();
         };
       });
       document.querySelectorAll('.edit-button').forEach(function (item) {
         item.onclick = function (event) {
-          return _this2.editScraps(event);
+          return _this2.editModal(event);
         };
       });
-
-      this.btnSaveEdit.onclick = function (event) {
-        return _this2.saveTask(event);
-      };
     }
   }, {
     key: "renderScraps",
@@ -106,8 +102,7 @@ var TaskList = /*#__PURE__*/function () {
     }
   }, {
     key: "deleteScraps",
-    value: function deleteScraps(event) {
-      console.log(event);
+    value: function deleteScraps() {
       event.path[2].remove();
       var scrapId = event.path[2].getAttribute('id-scrap');
       var scrapIndex = this.scraps.findIndex(function (scrap) {
@@ -116,8 +111,10 @@ var TaskList = /*#__PURE__*/function () {
       this.scraps.splice(scrapIndex, 1);
     }
   }, {
-    key: "editScraps",
-    value: function editScraps(event) {
+    key: "editModal",
+    value: function editModal(event) {
+      var _this3 = this;
+
       $('#editModal').modal('toggle');
       var scrapId = event.path[2].getAttribute('id-scrap');
       var scrapIndex = this.scraps.findIndex(function (scrap) {
@@ -125,17 +122,37 @@ var TaskList = /*#__PURE__*/function () {
       });
       this.editTitleInput.value = this.scraps[scrapIndex].title;
       this.editMessageInput.value = this.scraps[scrapIndex].message;
+
+      this.btnSaveEdit.onclick = function (event) {
+        return _this3.saveChanges(scrapIndex);
+      };
     }
+    /* for reference only
+    function saveChanges(position) {
+     scraps[position].title = editTitleInput.value
+    scraps[position].message = editMessageInput.value
+    renderScraps()
+    storeLocally()
+    $('#editModal').modal('hide')
+    }
+     */
+
   }, {
-    key: "saveTask",
-    value: function saveTask(event) {
-      alert("title: ".concat(this.editTitleInput.value));
-      $('#editModal').modal('toggle');
+    key: "saveChanges",
+    value: function saveChanges(scrapIndex) {
+      var title = this.editTitleInput.value;
+      var message = this.editMessageInput.value;
+      this.scraps[scrapIndex] = {
+        title: title,
+        message: message
+      };
+      this.renderScraps();
+      $('#editModal').modal('hide');
     }
   }, {
     key: "insertHtml",
     value: function insertHtml(html) {
-      this.scrapsField.innerHTML += html; // console.log(html);
+      this.scrapsField.innerHTML += html;
     }
   }, {
     key: "createScrapCard",

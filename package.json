@@ -1,9 +1,9 @@
 {
-  "name": "scrapbook",
+  "name": "simple-scrapbook",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/rovedajr/vanillajs-scrapbook.git",
-  "author": "rovedajr <contato@rovedajr.com>",
+  "repository": "https://github.com/djunior97/simple-scrapbook.git",
+  "author": "dirceuAntunes <dirceu.antunes@garupa.co>",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -14,5 +14,8 @@
   },
   "scripts": {
     "dev": "babel ./main.js -o ./bundle.js -w"
+  },
+  "dependencies": {
+    "babel-loader": "^8.1.0"
   }
 }

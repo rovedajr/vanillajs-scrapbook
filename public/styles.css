@@ -1,21 +1,3 @@
-body { 
-  background: url(img/wave.svg) no-repeat center center fixed;
-  background-size: cover;
-  height: 100%;
-  /* overflow: hidden; */
-}
-
-.jumbotron {
-  background-color: rgba(0,0,0,0);
-  position: relative;
-}
-
-#inputField {
-  background-color: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.20);
-}
-
 textarea {
   resize: none;
 }
@@ -25,8 +7,7 @@ textarea {
   width: 250px;
 }
 
-
-#scrapsField .message-cards .card-text{
+#scrapsField .message-cards .card-text {
   height: 100px;
   overflow-y: scroll;
 }

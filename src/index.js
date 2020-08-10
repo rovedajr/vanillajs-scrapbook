@@ -1,3 +1,7 @@
+import api from './services/api';
+
+console.log(api);
+
 class TaskList {
   constructor() {
     this.titleInput = document.getElementById("messageTitle");
@@ -11,6 +15,13 @@ class TaskList {
     this.scraps = [];
 
     this.setAddButtonEvent();
+
+    this.getScraps()
+  }
+
+  async getScraps() {
+    const results = await api.get("/scraps")
+    console.log(results);
   }
 
   generateScrapId() {

@@ -14,18 +14,15 @@ class TaskList {
 
     this.scraps = [];
 
+    this.getScraps()
     this.setAddButtonEvent();
 
-    this.getScraps()
   }
 
   async getScraps() {
-    const results = await api.get("/scraps")
-    console.log(results);
-  }
-
-  generateScrapId() {
-    return this.scraps.length + 1;
+    const { data } = await api.get("/scraps") // busca os scraps da API
+    this.scraps = data;
+    this.renderScraps()
   }
 
   setAddButtonEvent() {
@@ -59,14 +56,20 @@ class TaskList {
     this.setButtonEvents();
   }
 
-  addNewScrap() {
-    let title = this.titleInput.value;
-    let message = this.messageInput.value;
+  async addNewScrap() {
+    let newTitle = this.titleInput.value;
+    let newMessage = this.messageInput.value;
 
     this.titleInput.value = "";
     this.messageInput.value = "";
 
-    const id = this.generateScrapId();
+    const {
+      data: { id, title, message }
+    } = await api.post('/scraps', {
+      title: newTitle,
+      message: newMessage
+    })
+
 
     this.scraps.push({ id, title, message });
 

@@ -80,10 +80,12 @@ class TaskList {
     this.scrapsField.innerHTML += html;
   }
 
-  deleteScraps(event) {
+  async deleteScraps(event) {
     event.path[2].remove();
 
     const scrapId = event.path[2].getAttribute("id-scrap");
+
+    await api.delete(`/scraps/${scrapId}`)
 
     const scrapIndex = this.scraps.findIndex((scrap) => {
       return scrap.id == scrapId;

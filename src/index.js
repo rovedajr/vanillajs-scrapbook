@@ -106,12 +106,18 @@ class TaskList {
     this.editTitleInput.value = this.scraps[scrapIndex].title;
     this.editMessageInput.value = this.scraps[scrapIndex].message;
 
-    this.btnSaveEdit.onclick = () => this.saveChanges(scrapIndex);
+    this.btnSaveEdit.onclick = () => this.saveChanges(scrapIndex, scrapId);
   }
 
-  saveChanges(scrapIndex) {
+  async saveChanges(scrapIndex, scrapId) {
     let title = this.editTitleInput.value;
     let message = this.editMessageInput.value;
+
+    await api.put(`/scraps/${scrapId}`, {
+      title,
+      message
+    })
+
 
     this.scraps[scrapIndex] = { title, message };
     this.renderScraps();
